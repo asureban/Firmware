@@ -402,7 +402,12 @@ then
 		unset HIL
 	else
 		unset HIL
-		gps start
+		gps start -d $GPSDEVICE
+		
+		if param compare GPS_DEVICE 921600
+		then
+			mavlink start -d ${MAVLINK_COMPANION_DEVICE} -b 921600 -m onboard -r 80000 -x
+		fi
 	fi
 
 	set DATAMAN_OPT ""
